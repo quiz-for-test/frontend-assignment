@@ -7,7 +7,7 @@ const useSelectedLists = (type: string) => {
 
   const listSelected = useMemo(() => {
     return selectedLists.filter((list) => list.type === type);
-  }, [selectedLists]);
+  }, [selectedLists, type]);
 
   const onClickHandler = (list: itemState) => {
     unSelectedItem(list);

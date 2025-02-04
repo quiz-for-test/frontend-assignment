@@ -1,5 +1,5 @@
 type RecordType<T> = {
-  [x: string]: string | number | T;
+  [key: string]: T;
 };
 type DataType = {
   users: RecordType<any>[];

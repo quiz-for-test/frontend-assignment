@@ -1,16 +1,24 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
 import { FlatCompat } from "@eslint/eslintrc";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+// Import @typescript-eslint/eslint-plugin using ESM import
+import eslintPlugin from "@typescript-eslint/eslint-plugin";
 
 const compat = new FlatCompat({
-  baseDirectory: __dirname,
+  baseDirectory: import.meta.url, // Use `import.meta.url` for ESM
 });
 
-const eslintConfig = [
+export default [
+  // Extend the Next.js recommended configuration
   ...compat.extends("next/core-web-vitals", "next/typescript"),
-];
 
-export default eslintConfig;
+  // Specify the plugin and rules in flat config format
+  {
+    plugins: {
+      "@typescript-eslint": eslintPlugin, // Use the imported plugin here
+    },
+    rules: {
+      "no-console": "warn", // Custom rule
+      "@typescript-eslint/no-explicit-any": "warn", // Prevent explicit 'any' type
+    },
+  },
+];
