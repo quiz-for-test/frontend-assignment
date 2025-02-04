@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent, waitFor, screen } from "@testing-library/react";
+import { render, fireEvent, waitFor } from "@testing-library/react";
 import Lists from "../Lists";
 import useLists from "@/hooks/useLists";
 import useInterval from "@/hooks/useInterval";

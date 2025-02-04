@@ -1,8 +1,5 @@
 "use client";
-import useListsStore from "@/stores/lists";
-import { useMemo } from "react";
 import Button from "./Button";
-import { itemState } from "@/interfaces/listItem";
 import useSelectedLists from "@/hooks/useSelectedLists";
 
 const SelectedList = ({ type }: { type: string }) => {
