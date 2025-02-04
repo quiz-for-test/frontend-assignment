@@ -36,12 +36,13 @@ describe("Lists component", () => {
     expect(onClickHandler).toHaveBeenCalledWith(lists[0]);
   });
 
-  it("the autoUnSelected function is called every 1000ms", async () => {
+  it("the autoUnSelected function is called every 5000ms when expiredTime is valid", async () => {
     const autoUnSelected = jest.fn();
     (useLists as jest.Mock).mockReturnValue({
       lists: [],
       onClickHandler: jest.fn(),
       autoUnSelected,
+      expiredTime: 1000, // valid expiredTime
     });
     (useInterval as jest.Mock).mockImplementation((fn, interval) => {
       fn();
@@ -49,5 +50,21 @@ describe("Lists component", () => {
     });
     render(<Lists />);
     await waitFor(() => expect(autoUnSelected).toHaveBeenCalledTimes(1));
+  });
+
+  it("the autoUnSelected function is not called when expiredTime is invalid", async () => {
+    const autoUnSelected = jest.fn();
+    (useLists as jest.Mock).mockReturnValue({
+      lists: [],
+      onClickHandler: jest.fn(),
+      autoUnSelected,
+      expiredTime: null, // invalid expiredTime
+    });
+    (useInterval as jest.Mock).mockImplementation((fn, interval) => {
+      fn();
+      global.setTimeout(fn, interval);
+    });
+    render(<Lists />);
+    await waitFor(() => expect(autoUnSelected).not.toHaveBeenCalled());
   });
 });
