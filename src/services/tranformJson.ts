@@ -17,10 +17,7 @@ const tranFormJson = (data: DataType) => {
         bloodGroup: {},
         hair: {},
         eyeColor: {},
-        addressUser: {
-          state: {},
-          country: {},
-        },
+        addressUser: {},
       };
     }
     if (acc[departMent]) {
@@ -55,16 +52,8 @@ const tranFormJson = (data: DataType) => {
         acc[departMent].eyeColor[user.eyeColor] += 1;
       }
       // addressUser
-      if (!acc[departMent].addressUser.state[user.address.state]) {
-        acc[departMent].addressUser.state[user.address.state] = 1;
-      } else {
-        acc[departMent].addressUser.state[user.address.state] += 1;
-      }
-      if (!acc[departMent].addressUser.country[user.address.country]) {
-        acc[departMent].addressUser.country[user.address.country] = 1;
-      } else {
-        acc[departMent].addressUser.country[user.address.country] += 1;
-      }
+      acc[departMent].addressUser[`${user.firstName}${user.lastName}`] =
+        user.company.address.postalCode;
     }
     return acc;
   }, {});
