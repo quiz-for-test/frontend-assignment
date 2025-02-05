@@ -11,13 +11,14 @@ describe("tranFormJson function", () => {
     const data = {
       users: [
         {
-          company: { department: "Sales" },
+          firstName: "test",
+          lastName: "demo",
+          company: { department: "Sales", address: { postalCode: 1234 } },
           gender: "male",
           age: 30,
           bloodGroup: "A+",
           hair: { color: "black" },
           eyeColor: "brown",
-          address: { state: "NY", country: "USA" },
         },
       ],
     };
@@ -30,7 +31,7 @@ describe("tranFormJson function", () => {
         bloodGroup: { "A+": 1 },
         hair: { black: 1 },
         eyeColor: { brown: 1 },
-        addressUser: { state: { NY: 1 }, country: { USA: 1 } },
+        addressUser: { testdemo: 1234 },
       },
     });
   });
@@ -39,7 +40,9 @@ describe("tranFormJson function", () => {
     const data = {
       users: [
         {
-          company: { department: "Sales" },
+          firstName: "test",
+          lastName: "demo",
+          company: { department: "Sales", address: { postalCode: 1234 } },
           gender: "male",
           age: 30,
           bloodGroup: "A+",
@@ -48,7 +51,9 @@ describe("tranFormJson function", () => {
           address: { state: "NY", country: "USA" },
         },
         {
-          company: { department: "Sales" },
+          firstName: "test2",
+          lastName: "demo2",
+          company: { department: "Sales", address: { postalCode: 4321 } },
           gender: "female",
           age: 25,
           bloodGroup: "O-",
@@ -67,7 +72,7 @@ describe("tranFormJson function", () => {
         bloodGroup: { "A+": 1, "O-": 1 },
         hair: { black: 1, blonde: 1 },
         eyeColor: { brown: 1, blue: 1 },
-        addressUser: { state: { NY: 1, CA: 1 }, country: { USA: 2 } },
+        addressUser: { testdemo: 1234, test2demo2: 4321 },
       },
     });
   });
@@ -76,7 +81,9 @@ describe("tranFormJson function", () => {
     const data = {
       users: [
         {
-          company: { department: "Sales" },
+          firstName: "test3",
+          lastName: "demo3",
+          company: { department: "Sales", address: { postalCode: 4321 } },
           gender: "male",
           age: 30,
           bloodGroup: "A+",
@@ -85,7 +92,9 @@ describe("tranFormJson function", () => {
           address: { state: "NY", country: "USA" },
         },
         {
-          company: { department: "Marketing" },
+          firstName: "test2",
+          lastName: "demo2",
+          company: { department: "Marketing", address: { postalCode: 9999 } },
           gender: "female",
           age: 25,
           bloodGroup: "O-",
@@ -104,7 +113,7 @@ describe("tranFormJson function", () => {
         bloodGroup: { "A+": 1 },
         hair: { black: 1 },
         eyeColor: { brown: 1 },
-        addressUser: { state: { NY: 1 }, country: { USA: 1 } },
+        addressUser: { test3demo3: 4321 },
       },
       Marketing: {
         male: 0,
@@ -113,7 +122,7 @@ describe("tranFormJson function", () => {
         bloodGroup: { "O-": 1 },
         hair: { blonde: 1 },
         eyeColor: { blue: 1 },
-        addressUser: { state: { CA: 1 }, country: { USA: 1 } },
+        addressUser: { test2demo2: 9999 },
       },
     });
   });
